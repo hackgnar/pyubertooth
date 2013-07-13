@@ -1,5 +1,6 @@
 #PyUbertooth
 * Python libraries for Ubertooth
+* TODO: make this repo pip installable
 
 ## Project Description:
 * The goal of PyUbertooth is to provide libraries and tools to interact with an ubertooth device in python.
