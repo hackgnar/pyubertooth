@@ -443,7 +443,7 @@ class BtbbPacket(object):
     def count_bits(n):
         foo = bin(n)[2:]
         return foo.count('1')
-    
+   
     @staticmethod    
     def btbb_find_ac(byte):
         """not the best implementation, only looks at one rx data bank, does

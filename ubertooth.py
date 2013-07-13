@@ -116,13 +116,16 @@ def file_to_stdout(infile=None, count=None, secs=None, btbb=False):
     try:
         for i in ut.rx_file_stream(count=count, secs=secs):
             if btbb:
-                print BtbbPacket(data=i[4:])
+                pkt = BtbbPacket(data=i[4:])
+                if pkt.LAP:
+                    print pkt
             else:
                 print i
     except KeyboardInterrupt:
         pass
 
-def ubertooth_rx_to_file(outfile=None, channel=37, count=None, secs=None):
+def ubertooth_rx_to_file(outfile=None, channel=37, count=None, secs=None,
+        btbb=False):
     ut = Ubertooth()
     ut.set_channel(channel)
     f = open(outfile,'wb')
@@ -133,6 +136,18 @@ def ubertooth_rx_to_file(outfile=None, channel=37, count=None, secs=None):
     except KeyboardInterrupt:
         pass
     f.close()
+    ut.close()
+
+def ubertooth_rx_to_stdout(channel=37, count=None, secs=None):
+    ut = Ubertooth()
+    ut.set_channel(channel)
+    try:
+        for data in ut.rx_stream(count=count, secs=secs):
+            pkt = BtbbPacket(data=data)
+            if pkt.LAP:
+                print pkt
+    except KeyboardInterrupt:
+        pass
     ut.close()
 
 def CreateParser():
@@ -149,13 +164,15 @@ def CreateParser():
             help="read packets from an ubertooth dump file")
     parser.add_argument("--outfile", type=str, default="ubertooth-dump.dump",
             help="file to store ubertooth usb packets")
-    parser.add_argument("--btbb", type=bool, default=False,
+    parser.add_argument("--btbb", action='store_true', default=False,
             help = "parse ubertooth data with pylibbtbb")
     return parser.parse_args()
 
 def main(infile=None, outfile=None, channel=37, count=None, secs=None, btbb=False):
     if infile:
         file_to_stdout(infile=infile, count=count, secs=secs, btbb=btbb)
+    elif btbb:
+       ubertooth_rx_to_stdout(channel=channel, count=count, secs=secs) 
     else:
         ubertooth_rx_to_file(outfile=outfile, channel=channel, count=count,
                 secs=secs, btbb=btbb)

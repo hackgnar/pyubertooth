@@ -18,6 +18,7 @@
 
 # Core Library: ubertooth.py
 * A pure python interface to an ubertooth device.  This module can be used as a stand alown script or as a python library to interact with an ubertooth.
+* TODO: Switch to \*args, \*\*kwargs for my argparse methods
 * TODO: The library is still lacking verbose doc strings.  These will be added soon.
 * TODO: Many of the simple ubertooth usb contols will be added soon (such as led control, etc)
 * TODO: Full python library documentation.
