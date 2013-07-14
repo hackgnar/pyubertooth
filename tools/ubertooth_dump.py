@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 A simple stand alown pure python script to dump data from an ubertooth into a 
 file.  The dump format is compatible with the ubertooth-rx tool.  This allows 
