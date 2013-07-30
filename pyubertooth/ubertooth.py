@@ -48,7 +48,14 @@ import sys
 import array
 import usb.core
 import time
-from pylibbtbb.bluetooth_packet import BtbbPacket
+try:
+    from pylibbtbb.bluetooth_packet import BtbbPacket
+except:
+    import os
+    parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    sys.path.insert(0,parentdir)
+    from pylibbtbb.bluetooth_packet import BtbbPacket
+
 
 class Ubertooth(object):
     def __init__(self, device=True, infile=None, outfile=None):
