@@ -24,7 +24,7 @@ and based off of the c library libbtbb and some of my ugly POC code
 github.com/hackgnar/lockdown_2013/src/alpha/pyut_alpha.py.
 
 TODO:
-    1) utilize the pure py BitVector lib (instead of my ugly bit arrays)
+    1) replace shit string casting and use struct for binary serialization
     2) port over more functionality from my alpha code
     3) implement more robust UAP features from c libbtbb
     4) more code cleanup/refactor
