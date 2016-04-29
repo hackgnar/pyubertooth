@@ -7,7 +7,7 @@
 * Cpython implementations will be provided in the future, but will always have pure python alternatives.
 
 ## Core PyUbertooth Libraries:
-* ubertooth.py: Provides direct access to an ubertooth device.
+* pyubertooth/ubertooth.py: Provides direct access to an ubertooth device.
 * pylibbtbb/bluetooth_packet.py: Provides methods and data stuctures for converting ubertooth data into bluetooth baseband data.
 
 ## Core PyUbertooth Tools:
