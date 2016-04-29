@@ -8,11 +8,18 @@
 
 ## Core PyUbertooth Libraries:
 * pyubertooth/ubertooth.py: Provides direct access to an ubertooth device.
-* pylibbtbb/bluetooth_packet.py: Provides methods and data stuctures for converting ubertooth data into bluetooth baseband data.
+* pylibbtbb/bluetooth_packet.py: Provides methods and data structures for converting ubertooth data into bluetooth baseband data.
 
 ## Core PyUbertooth Tools:
 * pyubertooth_rx.py: This file provides some CLI functionality to control the ubertooth.
-* tools/ubertooth_dump.py: A simple script to dump data from an ubertooth device to a file.  This dump data is compatable with the ubertooth C libraries and tools (i.e. used with the -i flag with the ubertooth-rx tool).
+* tools/ubertooth_dump.py: A simple script to dump data from an ubertooth device to a file.  This dump data is compatible with the ubertooth C libraries and tools (i.e. used with the -i flag with the ubertooth-rx tool).
+
+## Upcoming Milestones:
+* Finish up porting over all USB get/set/mode command functions (WIP)
+* Rewrite my pure python libbtbb lib (WIP)
+* Create Ctypes libbtbb bindings (WIP)
+* Rewrite my ubertooth scapy rx layer
+* Create an ubertooth scapy tx layer
 
 -------------------------------
 
