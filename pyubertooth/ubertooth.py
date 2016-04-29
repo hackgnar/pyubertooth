@@ -24,6 +24,7 @@ import time
 import struct
 
 class Ubertooth(object):
+    #TODO: add support for multiple ubertooth devices
     def __init__(self, device=True, infile=None, outfile=None):
         if device:
             self.device = self._init_device()
