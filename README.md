@@ -11,12 +11,13 @@
 * pylibbtbb/bluetooth_packet.py: Provides methods and data stuctures for converting ubertooth data into bluetooth baseband data.
 
 ## Core PyUbertooth Tools:
+* pyubertooth_rx.py: This file provides some CLI functionality to control the ubertooth.
 * tools/ubertooth_dump.py: A simple script to dump data from an ubertooth device to a file.  This dump data is compatable with the ubertooth C libraries and tools (i.e. used with the -i flag with the ubertooth-rx tool).
 
 -------------------------------
 
-# Core Library: ubertooth.py
-* A pure python interface to an ubertooth device.  This module can be used as a stand alown script or as a python library to interact with an ubertooth.
+# Core CLI Script: pyubertooth_rx.py
+* A pure python interface to an ubertooth device.
 * TODO: Switch to \*args, \*\*kwargs for my argparse methods
 * TODO: The library is still lacking verbose doc strings.  These will be added soon.
 * TODO: Many of the simple ubertooth usb contols will be added soon (such as led control, etc)
@@ -24,28 +25,28 @@
 
 ### Sample command line usage:
 ##### For usage help:
-    python ubertooth.py --help
+    python pyubertooth_rx.py --help
 
 ##### To log ubertooth data to a file (usable with ubertooth-rx -i filename):
-    python ubertooth.py --outfile=dump_filename.dump
+    python pyubertooth_rx.py --outfile=dump_filename.dump
 
 ##### To log ubertooth data directly to a file from bluetooth channel 60:
-    python ubertooth.py --outfile=dump_filename.dump --channel 60
+    python pyubertooth_rx.py --outfile=dump_filename.dump --channel 60
 
 ##### To log 30 seconds worth of ubertooth data directly to a file :
-    python ubertooth.py --outfile=dump_filename.dump -t 30
+    python pyubertooth_rx.py --outfile=dump_filename.dump -t 30
 
 ##### To log 300 ubertooth usb data packets directly to a file :
-    python ubertooth.py --outfile=dump_filename.dump -n 300
+    python pyubertooth_rx.py --outfile=dump_filename.dump -n 300
 
 ##### To read raw ubertooth usb data from a dump file to std out:
-    python ubertooth.py --infile=dump_filename.dump
+    python pyubertooth_rx.py --infile=dump_filename.dump
 
 ##### To display bluetooth packet information from a dump file (LAP, UAP, channel, etc):
-    python ubertooth.py --infile=dump_filename.dump --btbb
+    python pyubertooth_rx.py --infile=dump_filename.dump --btbb
 
 ##### To display bluetooth packet information from a live stream (LAP, UAP, channel, etc):
-    python ubertooth.py --btbb
+    python pyubertooth_rx.py --btbb
 
 ### Sample python library usage:
 ##### To open a connection to an ubertooth device:
