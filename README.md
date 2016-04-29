@@ -16,6 +16,7 @@
 
 ## Upcoming Milestones:
 * Finish up porting over all USB get/set/mode command functions (WIP)
+* The library is still lacking verbose doc strings.  These will be added soon and all of my shitty useless comments will get cleaned up
 * Rewrite my pure python libbtbb lib (WIP)
 * Create Ctypes libbtbb bindings (WIP)
 * Rewrite my ubertooth scapy rx layer
@@ -26,7 +27,6 @@
 # Core CLI Script: pyubertooth_rx.py
 * A pure python interface to an ubertooth device.
 * TODO: Switch to \*args, \*\*kwargs for my argparse methods
-* TODO: The library is still lacking verbose doc strings.  These will be added soon.
 * TODO: Many of the simple ubertooth usb contols will be added soon (such as led control, etc)
 * TODO: Full python library documentation.
 
