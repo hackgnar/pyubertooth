@@ -2,3 +2,4 @@
 *.swp
 *.dump
 notebooks/test_*
+notebooks/.ipynb_checkpoints
