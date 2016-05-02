@@ -46,6 +46,7 @@ python ubertooth.py --infile=dump_filename.dump
 
 import sys
 import argparse
+import array
 from pylibbtbb.bluetooth_packet import BtbbPacket
 from pyubertooth.ubertooth import Ubertooth
 
