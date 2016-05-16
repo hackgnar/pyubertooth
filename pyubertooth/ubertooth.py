@@ -347,6 +347,14 @@ class Ubertooth(object):
         ##line 845 ubertooth_control.c
         # btle promisc mode
         ##line 858 ubertooth_control.c
+        pass
+
+    def cmd_read_register(self, reg):
+        value = self.device.ctrl_transfer(0xc0, 53, reg & 0xFF, 0, 2)
+        value = struct.unpack('>H',value)
+        return value
+
+    def todo2(self):
         # read register
         ##line 875 ubertooth_control.c
         # btle slave mode
@@ -360,7 +368,7 @@ class Ubertooth(object):
         ##line 930 ubertooth_control.c
         self.device.ctrl_transfer(0x40,59,mode, 0)
 
-    def todo2(self):
+    def todo3(self):
         # ego mode
         ##line 947 ubertooth_control.c
         # afh mode
@@ -371,4 +379,5 @@ class Ubertooth(object):
         ##line 994 ubertooth_control.c
         pass
 
-
+    def cmd_write_register(self, reg, value=0):
+        self.device.ctrl_transfer(0x40, 58, reg & 0xFF, value)
