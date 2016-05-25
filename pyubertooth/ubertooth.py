@@ -381,3 +381,16 @@ class Ubertooth(object):
 
     def cmd_write_register(self, reg, value=0):
         self.device.ctrl_transfer(0x40, 58, reg & 0xFF, value)
+
+    def cmd_write_registers(self, registers):
+        """
+        registers is a dictionary of register:value pairs
+        """
+        count = len(registers)
+        data = array.array("B", [0]*count*3)
+        for i, reg in enumerate(registers):
+            data[i*3] = reg & 0xFF
+            data[(i*3)+1] = (registers[reg]>>8) & 0xFF
+            data[(i*3)+2] = registers[reg] & 0xFF
+        print data
+        self.device.ctrl_transfer(0x40, 65, count, 0, data)
