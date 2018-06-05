@@ -1,17 +1,23 @@
-from os import path as osp
-
 import setuptools
+
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 setuptools.setup(
     name='pyubertooth',
     version='0.1',
-    description='Pure Python Library for Ubertooth',
     author='hackgnar',
+    description='Pure Python Library for Ubertooth',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     packages=setuptools.find_packages(),
-    long_description=open(osp.join(osp.dirname(__file__), 'README.md')).read(),
-    scripts=['tools/ubertooth_dump.py', 'pyubertooth/ubertooth.py'],
+    scripts=[
+        'bin/pyubertooth_dump',
+        'bin/pyubertooth_rx'
+    ],
     install_requires=[
-        'pyusb'
+        'pyusb',
     ],
     package_data={
         'pyubertooth': []
