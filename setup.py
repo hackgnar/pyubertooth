@@ -11,6 +11,7 @@ setuptools.setup(
     description='Pure Python Library for Ubertooth',
     long_description=long_description,
     long_description_content_type='text/markdown',
+    url='https://github.com/hackgnar/pyubertooth',
     packages=setuptools.find_packages(),
     scripts=[
         'bin/pyubertooth_dump',
