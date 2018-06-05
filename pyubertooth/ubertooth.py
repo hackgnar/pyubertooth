@@ -244,11 +244,11 @@ class Ubertooth(object):
         #NOTE THIS FUNCTIONALITY IS BROKEN IN FIRMWARE ATM
         #line 458 ubertooth_control.c
         result = self.device.ctrl_transfer(0xc0,32,0, 0,20)
-        return { "valid" : result[0], 
-                "request_pa" : result[1], 
-                "request_num" : result[2],
-                "reply_pa" : result[3], 
-                "reply_num" : result[4] }
+        return {"valid": result[0],
+                "request_pa": result[1],
+                "request_num": result[2],
+                "reply_pa": result[3],
+                "reply_num": result[4]}
 
     def cmd_range_test(self):
         #range test
