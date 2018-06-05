@@ -7,8 +7,9 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name='pyubertooth',
     version='0.1',
-    author='hackgnar',
+    author='Ryan Holeman',
     description='Pure Python Library for Ubertooth',
+    maintainer='Haim Daniel',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/hackgnar/pyubertooth',
