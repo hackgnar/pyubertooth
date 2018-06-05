@@ -24,9 +24,13 @@ import struct
 import usb.core
 
 
+USB_ID_VENDOR = 0x1D50
+USB_ID_PRODUCT = 0x6002
+
+
 class Ubertooth(object):
     #TODO: add support for multiple ubertooth devices
-    def __init__(self, device=True, infile=None, outfile=None):
+    def __init__(self, device=True, infile=None):
         if device:
             self.device = self._init_device()
         else:
@@ -34,12 +38,11 @@ class Ubertooth(object):
         
         if infile:
             self.infile = open(infile, 'rb') 
-        else:
-            infile=None
 
     @staticmethod
     def _init_device():
-        device = usb.core.find(idVendor=0x1D50, idProduct=0x6002)
+        device = usb.core.find(idVendor=USB_ID_VENDOR,
+                               idProduct=USB_ID_PRODUCT)
         device.default_timeout = 3000
         device.set_configuration()
         return device
