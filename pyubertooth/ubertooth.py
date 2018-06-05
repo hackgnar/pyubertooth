@@ -82,7 +82,7 @@ class Ubertooth(object):
                     print i
                     break
                 i += 1
-            if secs != None: 
+            if secs is not None:
                 if time.time() >= start+secs:
                     break
             yield buf
