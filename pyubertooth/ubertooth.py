@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Copyright 2013 - 2013 Ryan Holeman
 
 This file is part of Project pyubertooth.
@@ -61,7 +60,7 @@ class Ubertooth(object):
                 if i >= count:
                     break
                 i += 1
-            if secs != None: 
+            if secs is not None:
                 if time.time() >= start+secs:
                     break
             yield buffer
@@ -72,7 +71,7 @@ class Ubertooth(object):
         start = time.time()
         while True:
             buffer = self.device.read(0x82, 64)
-            if count != None: 
+            if count is not None:
                 if i >= count:
                     print i
                     break
