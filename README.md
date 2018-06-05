@@ -8,11 +8,11 @@
 
 ## Core PyUbertooth Libraries:
 * pyubertooth/ubertooth.py: Provides direct access to an ubertooth device.
-* pylibbtbb/bluetooth_packet.py: Provides methods and data structures for converting ubertooth data into bluetooth baseband data.
+* pyubertooth/bluetooth_packet.py: Provides methods and data structures for converting ubertooth data into bluetooth baseband data.
 
 ## Core PyUbertooth Tools:
-* pyubertooth_rx.py: This file provides some CLI functionality to control the ubertooth.
-* tools/ubertooth_dump.py: A simple script to dump data from an ubertooth device to a file.  This dump data is compatible with the ubertooth C libraries and tools (i.e. used with the -i flag with the ubertooth-rx tool).
+* pyubertooth_rx: This file provides some CLI functionality to control the ubertooth.
+* ubertooth_dump: A simple script to dump data from an ubertooth device to a file.  This dump data is compatible with the ubertooth C libraries and tools (i.e. used with the -i flag with the ubertooth-rx tool).
 
 ## Upcoming Milestones:
 * Finish up porting over all USB get/set/mode command functions (WIP)
@@ -24,7 +24,7 @@
 
 -------------------------------
 
-# Core CLI Script: pyubertooth_rx.py
+# Core CLI Script: pyubertooth_rx
 * A pure python interface to an ubertooth device.
 * TODO: Switch to \*args, \*\*kwargs for my argparse methods
 * TODO: Many of the simple ubertooth usb contols will be added soon (such as led control, etc)
@@ -32,50 +32,50 @@
 
 ### Sample command line usage:
 ##### For usage help:
-    python pyubertooth_rx.py --help
+    pyubertooth_rx --help
 
 ##### To log ubertooth data to a file (usable with ubertooth-rx -i filename):
-    python pyubertooth_rx.py --outfile=dump_filename.dump
+    pyubertooth_rx --outfile=dump_filename.dump
 
 ##### To log ubertooth data directly to a file from bluetooth channel 60:
-    python pyubertooth_rx.py --outfile=dump_filename.dump --channel 60
+    pyubertooth_rx --outfile=dump_filename.dump --channel 60
 
 ##### To log 30 seconds worth of ubertooth data directly to a file :
-    python pyubertooth_rx.py --outfile=dump_filename.dump -t 30
+    pyubertooth_rx --outfile=dump_filename.dump -t 30
 
 ##### To log 300 ubertooth usb data packets directly to a file :
-    python pyubertooth_rx.py --outfile=dump_filename.dump -n 300
+    pyubertooth_rx --outfile=dump_filename.dump -n 300
 
 ##### To read raw ubertooth usb data from a dump file to std out:
-    python pyubertooth_rx.py --infile=dump_filename.dump
+    pyubertooth_rx --infile=dump_filename.dump
 
 ##### To display bluetooth packet information from a dump file (LAP, UAP, channel, etc):
-    python pyubertooth_rx.py --infile=dump_filename.dump --btbb
+    pyubertooth_rx --infile=dump_filename.dump --btbb
 
 ##### To display bluetooth packet information from a live stream (LAP, UAP, channel, etc):
-    python pyubertooth_rx.py --btbb
+    pyubertooth_rx --btbb
 
 ### Sample python library usage:
 ##### To open a connection to an ubertooth device:
-    import ubertooth
+    from pyubertooth.ubertooth import Ubertooth
     ut = Ubertooth()
 
 ##### To access 5 data blocks from an ubertooth device as a python iterator:
-    import ubertooth
+    from pyubertooth.ubertooth import Ubertooth
     ut = Ubertooth()
     for data in ut.rx_stream(count=5):
         print data
     ut.close()
 
 ##### To access data blocks from an ubertooth device as a python iterator for 30 seconds:
-    import ubertooth
+    from pyubertooth.ubertooth import Ubertooth
     ut = Ubertooth()
     for data in ut.rx_stream(secs=30):
         print data
     ut.close()
 
 ##### To access data from an ubertooth device until ctrl-C is pressed:
-    import ubertooth
+    from pyubertooth.ubertooth import Ubertooth
     ut = Ubertooth()
     try:
         for data in ut.rx_stream():
@@ -85,7 +85,7 @@
     ut.close()
 
 ##### An example of directly streaming ubertooth data to a file for 60 seconds:
-    import ubertooth
+    from pyubertooth.ubertooth import Ubertooth
     ut = Ubertooth()
     f = open("dump_filename.dump", 'wb')
     for data in ut.rx_stream(secs=60):
@@ -94,7 +94,7 @@
     ut.close()
 
 ##### Changing the channel on an ubertooth device:
-    import ubertooth
+    from pyubertooth.ubertooth import Ubertooth 
     ut = Ubertooth()
     ut.set_channel(66)
 
@@ -109,8 +109,8 @@
 
 ### Sample python library usage:
 ##### To display bluetooth packet data for an ubertooth device stream:    
-    import ubertooth
-    from pylibbtbb.bluetooth_packet import BtbbPacket
+    from pyubertooth.ubertooth import Ubertooth() 
+    from pyubertooth.bluetooth_packet import BtbbPacket
     ut = Ubertooth()
     for data in ut.rx_stream():
         print BtbbPacket(data=data)
