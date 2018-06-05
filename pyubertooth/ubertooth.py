@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Copyright 2013 - 2013 Ryan Holeman
 
 This file is part of Project pyubertooth.
@@ -19,13 +18,19 @@ the Free Software Foundation, Inc., 51 Franklin Street,
 Boston, MA 02110-1301, USA."""
 
 import array
-import usb.core
 import time
 import struct
 
+import usb.core
+
+
+USB_ID_VENDOR = 0x1D50
+USB_ID_PRODUCT = 0x6002
+
+
 class Ubertooth(object):
     #TODO: add support for multiple ubertooth devices
-    def __init__(self, device=True, infile=None, outfile=None):
+    def __init__(self, device=True, infile=None):
         if device:
             self.device = self._init_device()
         else:
@@ -33,19 +38,19 @@ class Ubertooth(object):
         
         if infile:
             self.infile = open(infile, 'rb') 
-        else:
-            infile=None
 
-    def _init_device(self):
-        device = usb.core.find(idVendor=0x1D50, idProduct=0x6002)
-        device.default_timeout=3000
+    @staticmethod
+    def _init_device():
+        device = usb.core.find(idVendor=USB_ID_VENDOR,
+                               idProduct=USB_ID_PRODUCT)
+        device.default_timeout = 3000
         device.set_configuration()
         return device
 
     def set_channel(self, channel=37):
         self.device.ctrl_transfer(0x40, 12, 2402+channel, 0)
     
-    def set_rx_mode(self, channel=None):
+    def set_rx_mode(self):
         self.device.ctrl_transfer(0x40, 1, 0, 0)
 
     def rx_file_stream(self, count=None, secs=None):
@@ -61,7 +66,7 @@ class Ubertooth(object):
                 if i >= count:
                     break
                 i += 1
-            if secs != None: 
+            if secs is not None:
                 if time.time() >= start+secs:
                     break
             yield buffer
@@ -71,16 +76,16 @@ class Ubertooth(object):
         i = 0
         start = time.time()
         while True:
-            buffer = self.device.read(0x82, 64)
-            if count != None: 
+            buf = self.device.read(0x82, 64)
+            if count is not None:
                 if i >= count:
                     print i
                     break
                 i += 1
-            if secs != None: 
+            if secs is not None:
                 if time.time() >= start+secs:
                     break
-            yield buffer
+            yield buf
     
     def close(self):
         self.device.ctrl_transfer(0x40, 21)
@@ -233,7 +238,7 @@ class Ubertooth(object):
         #get palevel (power amplifier level)
         #line 427 ubertooth_control.c
         level = self.device.ctrl_transfer(0xc0,28,0, 0,1)
-        struct.unpack('b',level)[0]
+        return struct.unpack('b',level)[0]
 
     def cmd_set_palevel(self, level=7):
         #set palevel (power amplifier level) where level 0-7
@@ -245,11 +250,11 @@ class Ubertooth(object):
         #NOTE THIS FUNCTIONALITY IS BROKEN IN FIRMWARE ATM
         #line 458 ubertooth_control.c
         result = self.device.ctrl_transfer(0xc0,32,0, 0,20)
-        return { "valid" : result[0], 
-                "request_pa" : result[1], 
-                "request_num" : result[2],
-                "reply_pa" : result[3], 
-                "reply_num" : result[4] }
+        return {"valid": result[0],
+                "request_pa": result[1],
+                "request_num": result[2],
+                "reply_pa": result[3],
+                "reply_num": result[4]}
 
     def cmd_range_test(self):
         #range test

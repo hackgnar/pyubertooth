@@ -1,20 +1,23 @@
+import setuptools
 
-from setuptools import setup, find_packages
-from os.path import join, dirname
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
-print "TODO: fix me"
-#setup(
-#    name = 'pyubertooth',
-#    version = '0.1',
-#    description = 'Pure Python Library for Ubertooth',
-#    author='hackgnar',
-#    packages = find_packages(),
-#    long_description = open(join(dirname(__file__), 'README.md')).read(),
-#    scripts = ['tools/ubertooth_dump.py', 'pyubertooth/ubertooth.py'],
-#    install_requires = [
-#        'pyusb'
-#    ],
-#    package_data = {
-#        'pyubertooth': []
-#    }
-#)
+setuptools.setup(
+    name='pyubertooth',
+    version='0.1',
+    author='Ryan Holeman',
+    description='Pure Python Library for Ubertooth',
+    maintainer='Haim Daniel',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    url='https://github.com/haim0n/pyubertooth',
+    packages=setuptools.find_packages(),
+    scripts=[
+        'bin/pyubertooth_dump',
+        'bin/pyubertooth_rx'
+    ],
+    install_requires=[
+        'pyusb',
+    ],
+)
