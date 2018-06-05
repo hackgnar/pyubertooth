@@ -20,7 +20,7 @@ Boston, MA 02110-1301, USA."""
 import argparse
 import array
 
-from pylibbtbb.bluetooth_packet import BtbbPacket
+from pyubertooth.bluetooth_packet import BtbbPacket
 from pyubertooth.ubertooth import Ubertooth
 
 
