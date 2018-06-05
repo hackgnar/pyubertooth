@@ -18,9 +18,11 @@ the Free Software Foundation, Inc., 51 Franklin Street,
 Boston, MA 02110-1301, USA."""
 
 import array
-import usb.core
 import time
 import struct
+
+import usb.core
+
 
 class Ubertooth(object):
     #TODO: add support for multiple ubertooth devices
@@ -35,16 +37,17 @@ class Ubertooth(object):
         else:
             infile=None
 
-    def _init_device(self):
+    @staticmethod
+    def _init_device():
         device = usb.core.find(idVendor=0x1D50, idProduct=0x6002)
-        device.default_timeout=3000
+        device.default_timeout = 3000
         device.set_configuration()
         return device
 
     def set_channel(self, channel=37):
         self.device.ctrl_transfer(0x40, 12, 2402+channel, 0)
     
-    def set_rx_mode(self, channel=None):
+    def set_rx_mode(self):
         self.device.ctrl_transfer(0x40, 1, 0, 0)
 
     def rx_file_stream(self, count=None, secs=None):
