@@ -232,7 +232,7 @@ class Ubertooth(object):
         #get palevel (power amplifier level)
         #line 427 ubertooth_control.c
         level = self.device.ctrl_transfer(0xc0,28,0, 0,1)
-        struct.unpack('b',level)[0]
+        return struct.unpack('b',level)[0]
 
     def cmd_set_palevel(self, level=7):
         #set palevel (power amplifier level) where level 0-7
