@@ -1,6 +1,5 @@
 import setuptools
 
-
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
@@ -12,7 +11,7 @@ setuptools.setup(
     maintainer='Haim Daniel',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/hackgnar/pyubertooth',
+    url='https://github.com/haim0n/pyubertooth',
     packages=setuptools.find_packages(),
     scripts=[
         'bin/pyubertooth_dump',
@@ -21,7 +20,4 @@ setuptools.setup(
     install_requires=[
         'pyusb',
     ],
-    package_data={
-        'pyubertooth': []
-    }
 )
