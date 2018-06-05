@@ -46,14 +46,13 @@ def _create_ut_with_channel(channel):
 
 def ubertooth_rx_to_file(outfile=None, channel=37, count=None, secs=None):
     ut = _create_ut_with_channel(channel)
-    f = open(outfile, 'wb')
-    try:
-        systime = array.array('B', [0, 0, 0, 0])
-        for i in ut.rx_stream(count=count, secs=secs):
-            f.write(systime + i)
-    except KeyboardInterrupt:
-        pass
-    f.close()
+    with open(outfile, 'wb') as f:
+        try:
+            systime = array.array('B', [0, 0, 0, 0])
+            for i in ut.rx_stream(count=count, secs=secs):
+                f.write(systime + i)
+        except KeyboardInterrupt:
+            pass
     ut.close()
 
 
