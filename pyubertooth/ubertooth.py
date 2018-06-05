@@ -76,7 +76,7 @@ class Ubertooth(object):
         i = 0
         start = time.time()
         while True:
-            buffer = self.device.read(0x82, 64)
+            buf = self.device.read(0x82, 64)
             if count is not None:
                 if i >= count:
                     print i
@@ -85,7 +85,7 @@ class Ubertooth(object):
             if secs != None: 
                 if time.time() >= start+secs:
                     break
-            yield buffer
+            yield buf
     
     def close(self):
         self.device.ctrl_transfer(0x40, 21)
