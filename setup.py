@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='pyubertooth',
-    version='0.1',
+    version='0.2',
     author='Ryan Holeman',
     description='Pure Python Library for Ubertooth',
     maintainer='Haim Daniel',
@@ -22,7 +22,7 @@ setuptools.setup(
     ],
     classifiers=(
         "Programming Language :: Python :: 2",
-        "License :: OSI Approved :: GNU General Public License (GPLv2)",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
         "Operating System :: OS Independent",
     ),
 )
