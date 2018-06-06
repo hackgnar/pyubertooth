@@ -20,4 +20,9 @@ setuptools.setup(
     install_requires=[
         'pyusb',
     ],
+    classifiers=(
+        "Programming Language :: Python :: 2",
+        "License :: OSI Approved :: GNU General Public License (GPLv2)",
+        "Operating System :: OS Independent",
+    ),
 )
