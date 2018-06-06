@@ -79,11 +79,10 @@ class Ubertooth(object):
             buf = self.device.read(0x82, 64)
             if count is not None:
                 if i >= count:
-                    print i
                     break
                 i += 1
             if secs is not None:
-                if time.time() >= start+secs:
+                if time.time() >= start + secs:
                     break
             yield buf
     
