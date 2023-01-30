@@ -396,5 +396,5 @@ class Ubertooth(object):
             data[i*3] = reg & 0xFF
             data[(i*3)+1] = (registers[reg]>>8) & 0xFF
             data[(i*3)+2] = registers[reg] & 0xFF
-        print data
+        print(data)
         self.device.ctrl_transfer(0x40, 65, count, 0, data)

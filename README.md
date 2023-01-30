@@ -64,14 +64,14 @@
     from pyubertooth.ubertooth import Ubertooth
     ut = Ubertooth()
     for data in ut.rx_stream(count=5):
-        print data
+        print(data)
     ut.close()
 
 ##### To access data blocks from an ubertooth device as a python iterator for 30 seconds:
     from pyubertooth.ubertooth import Ubertooth
     ut = Ubertooth()
     for data in ut.rx_stream(secs=30):
-        print data
+        print(data)
     ut.close()
 
 ##### To access data from an ubertooth device until ctrl-C is pressed:
@@ -79,7 +79,7 @@
     ut = Ubertooth()
     try:
         for data in ut.rx_stream():
-            print data
+            print(data)
     except KeyboardInterrupt:
         pass
     ut.close()
@@ -113,7 +113,7 @@
     from pyubertooth.bluetooth_packet import BtbbPacket
     ut = Ubertooth()
     for data in ut.rx_stream():
-        print BtbbPacket(data=data)
+        print(BtbbPacket(data=data))
     ut.close()
 
 ----------------------------

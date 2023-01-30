@@ -31,9 +31,9 @@ def file_to_stdout(infile=None, count=None, secs=None, btbb=False):
             if btbb:
                 pkt = BtbbPacket(data=i[4:])
                 if pkt.LAP:
-                    print pkt
+                    print(pkt)
             else:
-                print i
+                print(i)
     except KeyboardInterrupt:
         pass
 
@@ -64,7 +64,7 @@ def ubertooth_rx_to_stdout(channel=37, count=None, secs=None):
             channel += 1
             pkt = BtbbPacket(data=data)
             if pkt.LAP:
-                print pkt
+                print(pkt)
     except KeyboardInterrupt:
         pass
     ut.close()

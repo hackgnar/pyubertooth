@@ -391,7 +391,7 @@ def gen_syndrome(codeword):
  
 
 def cycle(error, start, depth, codeword):
-    #print "cycle ran"
+    #print("cycle ran")
     i = start
     base = 1
     depth -= 1;
